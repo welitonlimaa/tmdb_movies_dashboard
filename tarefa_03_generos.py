@@ -1,4 +1,4 @@
-"""Tarefa 02 — generos com maior popularidade e receita.
+"""Tarefa 03 — generos com maior popularidade e receita.
 
 Objetivo especifico:
 Identificar os generos com maior popularidade e receita.
@@ -45,7 +45,7 @@ def exibir(base: pd.DataFrame) -> None:
     # Explicacao (comentario obrigatorio):
     # Cite os generos do topo e diga se a lideranca e folgada ou se varios
     # generos ficam proximos.
-    st.info("Gráfico de receita por gênero ainda não foi feito. Edite tarefa_02_generos.py.")
+    st.info("Gráfico de receita por gênero ainda não foi feito. Edite tarefa_03_generos.py.")
 
     st.subheader("Barras: popularidade média por gênero")
     # Grafico 2 — barras.
@@ -53,7 +53,7 @@ def exibir(base: pd.DataFrame) -> None:
     #
     # Explicacao (comentario obrigatorio):
     # Diga se os generos mais populares sao os mesmos da maior receita media.
-    st.info("Gráfico de popularidade por gênero ainda não foi feito. Edite tarefa_02_generos.py.")
+    st.info("Gráfico de popularidade por gênero ainda não foi feito. Edite tarefa_03_generos.py.")
 
     st.subheader("Pizza opcional: participação dos 5 gêneros de maior receita")
     # Grafico 3 — pizza, so com o topo. Streamlit nao tem st.pie_chart pronto.
@@ -67,8 +67,8 @@ def exibir(base: pd.DataFrame) -> None:
 
 
 if __name__ == "__main__":
-    # python -m streamlit run tarefa_02_generos.py
-    st.set_page_config(page_title="Tarefa 02 — Gêneros", layout="wide")
+    # python -m streamlit run tarefa_03_generos.py
+    st.set_page_config(page_title="Tarefa 03 — Gêneros", layout="wide")
     base = carregar_base()
     imprimir_colunas(base)
     exibir(base)

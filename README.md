@@ -21,9 +21,9 @@ Cada objetivo específico é uma tarefa, com o próprio arquivo:
 
 | Arquivo | Pergunta | Gráficos |
 |---|---|---|
-| `tarefa_01_orcamento_receita.py` | Filmes com maior orçamento geram maior receita? | Dispersão (orçamento x receita) e barras dos 10 filmes de maior receita |
-| `tarefa_02_generos.py` | Quais gêneros têm maior popularidade e receita? | Barras de receita média por gênero e barras de popularidade média. Pizza só se ficar nos 5 gêneros do topo |
-| `tarefa_03_avaliacao_popularidade.py` | Filmes mais populares são os mais bem avaliados? | Dispersão (popularidade x nota) e linha da nota média por faixa de popularidade |
+| `tarefa_02_orcamento_receita.py` | Filmes com maior orçamento geram maior receita? | Dispersão (orçamento x receita) e barras dos 10 filmes de maior receita |
+| `tarefa_03_generos.py` | Quais gêneros têm maior popularidade e receita? | Barras de receita média por gênero e barras de popularidade média. Pizza só se ficar nos 5 gêneros do topo |
+| `tarefa_04_avaliacao_popularidade.py` | Filmes mais populares são os mais bem avaliados? | Dispersão (popularidade x nota) e linha da nota média por faixa de popularidade |
 
 O arquivo `app.py` é o dashboard final. Ele mostra o título, três cartões (KPI) e chama as três tarefas, uma embaixo da outra. Juntos, os cartões e os gráficos passam do mínimo de 4 visualizações pedido na etapa 2.
 
@@ -49,7 +49,7 @@ requirements.txt                    bibliotecas para instalar
 dados/tmdb_5000_movies.csv          base de filmes
 ```
 
-Quem mexe na tarefa 1 edita só `tarefa_01_orcamento_receita.py`. O mesmo vale para as outras. O gráfico escrito na tarefa aparece no dashboard porque o `app.py` já chama as três funções `exibir`.
+Quem mexe na tarefa 2 edita só `tarefa_02_orcamento_receita.py`. O mesmo vale para as outras. O gráfico escrito na tarefa aparece no dashboard porque o `app.py` já chama as três funções `exibir`.
 
 ## A base de dados
 

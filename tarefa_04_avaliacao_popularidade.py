@@ -1,4 +1,4 @@
-"""Tarefa 03 — avaliacao do publico e popularidade.
+"""Tarefa 04 — avaliacao do publico e popularidade.
 
 Objetivo especifico:
 Comparar a avaliacao dos filmes com sua popularidade.
@@ -43,7 +43,7 @@ def exibir(base: pd.DataFrame) -> None:
     # Explicacao (comentario obrigatorio):
     # Diga se os pontos sobem juntos ou se filmes muito populares aparecem
     # com notas medias parecidas com as dos menos populares.
-    st.info("Gráfico de dispersão ainda não foi feito. Edite tarefa_03_avaliacao_popularidade.py.")
+    st.info("Gráfico de dispersão ainda não foi feito. Edite tarefa_04_avaliacao_popularidade.py.")
 
     st.subheader("Linha: nota média por faixa de popularidade")
     # Grafico 2 — linha.
@@ -60,12 +60,12 @@ def exibir(base: pd.DataFrame) -> None:
     # Explicacao (comentario obrigatorio):
     # Compare a nota da faixa alta com a da faixa baixa e responda a pergunta
     # do objetivo em uma ou duas frases.
-    st.info("Gráfico de linha ainda não foi feito. Edite tarefa_03_avaliacao_popularidade.py.")
+    st.info("Gráfico de linha ainda não foi feito. Edite tarefa_04_avaliacao_popularidade.py.")
 
 
 if __name__ == "__main__":
-    # python -m streamlit run tarefa_03_avaliacao_popularidade.py
-    st.set_page_config(page_title="Tarefa 03 — Avaliação e popularidade", layout="wide")
+    # python -m streamlit run tarefa_04_avaliacao_popularidade.py
+    st.set_page_config(page_title="Tarefa 04 — Avaliação e popularidade", layout="wide")
     base = carregar_base()
     imprimir_colunas(base)
     exibir(base)

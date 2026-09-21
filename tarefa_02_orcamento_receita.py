@@ -1,4 +1,4 @@
-"""Tarefa 01 — relacao entre orcamento e receita.
+"""Tarefa 02 — relacao entre orcamento e receita.
 
 Objetivo especifico:
 Analisar a relacao entre orcamento e receita dos filmes.
@@ -42,7 +42,7 @@ def exibir(base: pd.DataFrame) -> None:
     # Explicacao (comentario obrigatorio, escrito depois de olhar o grafico):
     # Diga se a nuvem de pontos sobe junto com o orcamento ou se ha muitos
     # filmes caros com receita baixa e filmes baratos com receita alta.
-    st.info("Gráfico de dispersão ainda não foi feito. Edite tarefa_01_orcamento_receita.py.")
+    st.info("Gráfico de dispersão ainda não foi feito. Edite tarefa_02_orcamento_receita.py.")
 
     st.subheader("Barras: 10 maiores receitas")
     # Grafico 2 — barras agrupadas.
@@ -52,16 +52,16 @@ def exibir(base: pd.DataFrame) -> None:
     # Explicacao (comentario obrigatorio):
     # Diga se, entre esses 10, o maior orcamento e tambem a maior receita,
     # ou se a ordem dos gastos nao acompanha a ordem do arrecadado.
-    st.info("Gráfico de barras ainda não foi feito. Edite tarefa_01_orcamento_receita.py.")
+    st.info("Gráfico de barras ainda não foi feito. Edite tarefa_02_orcamento_receita.py.")
 
 
 if __name__ == "__main__":
     # Rode este arquivo sozinho com:
-    # python -m streamlit run tarefa_01_orcamento_receita.py
-    # No terminal, python tarefa_01_orcamento_receita.py so imprime as colunas
+    # python -m streamlit run tarefa_02_orcamento_receita.py
+    # No terminal, python tarefa_02_orcamento_receita.py so imprime as colunas
     # se o Streamlit nao estiver conduzindo a pagina. Com streamlit run, a
     # pagina abre e as colunas tambem sao impressas uma vez.
-    st.set_page_config(page_title="Tarefa 01 — Orçamento e receita", layout="wide")
+    st.set_page_config(page_title="Tarefa 02 — Orçamento e receita", layout="wide")
     base = carregar_base()
     imprimir_colunas(base)
     exibir(base)
