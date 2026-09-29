@@ -9,25 +9,25 @@ import importlib
 import streamlit as st
 
 import preparacao
-import tarefa_01_orcamento_receita as tarefa_01
-import tarefa_02_generos as tarefa_02
-import tarefa_03_avaliacao_popularidade as tarefa_03
+import tarefa_02_orcamento_receita as tarefa_02
+import tarefa_03_generos as tarefa_03
+import tarefa_04_avaliacao_popularidade as tarefa_04
 
 # Sem este reload, o Streamlit continua com a versao antiga do arquivo
 # importado e a pessoa nao ve o grafico que acabou de salvar.
 importlib.reload(preparacao)
-importlib.reload(tarefa_01)
 importlib.reload(tarefa_02)
 importlib.reload(tarefa_03)
+importlib.reload(tarefa_04)
 
 carregar_base = preparacao.carregar_base
 descricao_colunas = preparacao.descricao_colunas
 filmes_com_dinheiro = preparacao.filmes_com_dinheiro
 filmes_para_avaliacao = preparacao.filmes_para_avaliacao
 imprimir_colunas = preparacao.imprimir_colunas
-exibir_orcamento_receita = tarefa_01.exibir
-exibir_generos = tarefa_02.exibir
-exibir_avaliacao = tarefa_03.exibir
+exibir_orcamento_receita = tarefa_02.exibir
+exibir_generos = tarefa_03.exibir
+exibir_avaliacao = tarefa_04.exibir
 
 st.set_page_config(page_title="Desempenho de filmes", layout="wide")
 
@@ -76,6 +76,6 @@ exibir_avaliacao(base)
 st.divider()
 st.caption(
     "A explicação de cada gráfico fica como comentário no arquivo da tarefa "
-    "(tarefa_01_orcamento_receita.py, tarefa_02_generos.py e "
-    "tarefa_03_avaliacao_popularidade.py)."
+    "(tarefa_02_orcamento_receita.py, tarefa_03_generos.py e "
+    "tarefa_04_avaliacao_popularidade.py)."
 )
