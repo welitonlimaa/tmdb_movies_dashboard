@@ -76,9 +76,9 @@ O que a limpeza faz, e por quê:
 Funções prontas para usar nas tarefas:
 
 - `carregar_base()` — tabela limpa, uma linha por filme.
-- `filmes_com_dinheiro(base)` — só filmes lançados com orçamento e receita. Use na tarefa 1.
-- `resumo_por_genero(base)` — uma linha por gênero, com médias. Use na tarefa 2. A média evita contar duas vezes o dinheiro de um filme que tem mais de um gênero.
-- `filmes_para_avaliacao(base)` — filmes lançados com pelo menos 50 votos. Use na tarefa 3.
+- `filmes_com_dinheiro(base)` — só filmes lançados com orçamento e receita. Use na tarefa 2.
+- `resumo_por_genero(base)` — uma linha por gênero, com médias. Use na tarefa 3. A média evita contar duas vezes o dinheiro de um filme que tem mais de um gênero.
+- `filmes_para_avaliacao(base)` — filmes lançados com pelo menos 50 votos. Use na tarefa 4.
 - `imprimir_colunas(base)` — escreve os labels no terminal.
 
 Colunas que as tarefas usam: `titulo`, `generos`, `orcamento`, `receita`, `lucro`, `retorno`, `popularidade`, `nota_media`, `quantidade_votos`, `nota_confiavel`, `ano`. Os valores de dinheiro estão em dólares, como na base original.
