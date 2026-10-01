@@ -42,9 +42,9 @@ As três conclusões pedidas na etapa 2 saem desses comentários (uma por tarefa
 ```text
 app.py                              pagina que junta tudo
 preparacao.py                       leitura e limpeza da base
-tarefa_01_orcamento_receita.py     objetivo 1
-tarefa_02_generos.py               objetivo 2
-tarefa_03_avaliacao_popularidade.py objetivo 3
+tarefa_02_orcamento_receita.py     objetivo 1
+tarefa_03_generos.py               objetivo 2
+tarefa_04_avaliacao_popularidade.py objetivo 3
 requirements.txt                    bibliotecas para instalar
 dados/tmdb_5000_movies.csv          base de filmes
 ```
