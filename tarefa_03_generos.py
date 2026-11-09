@@ -20,6 +20,7 @@ A explicacao do resultado deve ser escrita como comentario no codigo,
 ao lado de cada grafico. Nao crie outro arquivo so para esse texto.
 """
 
+import altair as alt
 import streamlit as st
 import pandas as pd
 
@@ -38,32 +39,103 @@ def exibir(base: pd.DataFrame) -> None:
     resumo = resumo_por_genero(base)
     st.caption(f"{len(resumo)} gêneros na base.")
 
+    # ------------------------------------------------------------------
+    # Grafico 1 — barras: receita media por genero.
+    # ------------------------------------------------------------------
     st.subheader("Barras: receita média por gênero")
-    # Grafico 1 — barras.
-    # st.bar_chart(resumo.set_index("genero")[["receita_media"]])
-    #
-    # Explicacao (comentario obrigatorio):
-    # Cite os generos do topo e diga se a lideranca e folgada ou se varios
-    # generos ficam proximos.
-    st.info("Gráfico de receita por gênero ainda não foi feito. Edite tarefa_03_generos.py.")
 
+    # Genero sem nenhuma receita informada (ex.: Filme de TV) nao tem media,
+    # entao fica fora deste grafico.
+    receita = resumo.dropna(subset=["receita_media"]).copy()
+    receita["receita_milhoes"] = receita["receita_media"] / 1_000_000
+
+    grafico_receita = (
+        alt.Chart(receita)
+        .mark_bar(color="#14B8A6")
+        .encode(
+            x=alt.X("receita_milhoes:Q", title="Receita média por filme (US$ milhões)"),
+            y=alt.Y("genero:N", sort="-x", title=None),  # do maior para o menor
+            tooltip=[
+                alt.Tooltip("genero:N", title="Gênero"),
+                alt.Tooltip("receita_milhoes:Q", title="Receita média (US$ mi)", format=".1f"),
+                alt.Tooltip("quantidade_filmes:Q", title="Filmes lançados"),
+            ],
+        )
+        .properties(height=450, width="container")
+    )
+    st.altair_chart(grafico_receita)
+
+    # Explicacao:
+    # Animação lidera a receita média (cerca de US$ 277 milhões por filme),
+    # seguida de Aventura (244 mi), Fantasia (234 mi) e Família (218 mi).
+    # A liderança não é folgada: os quatro primeiros ficam numa faixa
+    # parecida. A diferença grande está entre esse grupo e os gêneros de
+    # baixo, como Drama (78 mi) e Documentário (23 mi). Gêneros com muitos
+    # filmes, como Drama e Comédia, arrecadam bem menos por filme.
+
+    # ------------------------------------------------------------------
+    # Grafico 2 — barras: popularidade media por genero.
+    # ------------------------------------------------------------------
     st.subheader("Barras: popularidade média por gênero")
-    # Grafico 2 — barras.
-    # st.bar_chart(resumo.set_index("genero")[["popularidade_media"]])
-    #
-    # Explicacao (comentario obrigatorio):
-    # Diga se os generos mais populares sao os mesmos da maior receita media.
-    st.info("Gráfico de popularidade por gênero ainda não foi feito. Edite tarefa_03_generos.py.")
 
-    st.subheader("Pizza opcional: participação dos 5 gêneros de maior receita")
-    # Grafico 3 — pizza, so com o topo. Streamlit nao tem st.pie_chart pronto.
-    # Da para usar o pandas para ficar nos 5 primeiros e, se quiserem pizza,
-    # instalar uma biblioteca extra. Se o grupo preferir, este grafico pode
-    # ser mais um de barras. Nao e obrigatorio.
-    #
-    # Explicacao (comentario obrigatorio, se o grafico for feito):
-    # Diga quanto do conjunto esses 5 generos representam em relacao aos demais.
-    st.info("Pizza opcional. Se não for usada, apague esta seção e explique a escolha no comentário.")
+    grafico_popularidade = (
+        alt.Chart(resumo)
+        .mark_bar(color="#F59E0B")
+        .encode(
+            x=alt.X("popularidade_media:Q", title="Popularidade média (índice TMDB)"),
+            y=alt.Y("genero:N", sort="-x", title=None),
+            tooltip=[
+                alt.Tooltip("genero:N", title="Gênero"),
+                alt.Tooltip("popularidade_media:Q", title="Popularidade média", format=".2f"),
+                alt.Tooltip("quantidade_filmes:Q", title="Filmes lançados"),
+            ],
+        )
+        .properties(height=450, width="container")
+    )
+    st.altair_chart(grafico_popularidade)
+
+    # Explicacao:
+    # Aventura (39,3) e Animação (38,8) ficam praticamente empatadas no topo,
+    # seguidas de Ficção científica (36,5) e Fantasia (36,4). Quatro dos cinco
+    # gêneros de maior receita média também estão entre os cinco mais
+    # populares, então popularidade e receita andam juntas. As diferenças:
+    # Ação entra no top 5 de popularidade, mas não no de receita, e Família
+    # tem a 4ª maior receita com popularidade menor (27,9). No fim da lista
+    # ficam Estrangeiro, Documentário e Filme de TV, que também são gêneros
+    # com poucos filmes na base.
+
+    # ------------------------------------------------------------------
+    # Grafico 3 — pizza: so os 5 generos de maior receita media.
+    # ------------------------------------------------------------------
+    st.subheader("Pizza: participação dos 5 gêneros de maior receita média")
+
+    top5 = receita.nlargest(5, "receita_media").copy()
+    # Participacao = fatia de cada genero dentro do grupo dos 5 (0 a 1).
+    top5["participacao"] = top5["receita_media"] / top5["receita_media"].sum()
+
+    base_pizza = alt.Chart(top5).encode(
+        theta=alt.Theta("participacao:Q", stack=True),
+        color=alt.Color("genero:N", title="Gênero"),
+        tooltip=[
+            alt.Tooltip("genero:N", title="Gênero"),
+            alt.Tooltip("receita_milhoes:Q", title="Receita média (US$ mi)", format=".1f"),
+            alt.Tooltip("participacao:Q", title="Participação", format=".1%"),
+        ],
+    )
+    pizza = base_pizza.mark_arc(outerRadius=120)
+    rotulos = base_pizza.mark_text(radius=140, size=14).encode(
+        text=alt.Text("participacao:Q", format=".1%")
+    )
+    st.altair_chart((pizza + rotulos).properties(height=360))
+
+    # Explicacao:
+    # Dentro do grupo dos 5 maiores, as fatias são parecidas: Animação 23,9%,
+    # Aventura 21,1%, Fantasia 20,2%, Família 18,8% e Ficção científica 16,0%.
+    # Isso confirma que a liderança é apertada. Somando as médias, esses 5
+    # gêneros representam cerca de metade (50%) da soma das médias dos 19
+    # gêneros que têm receita informada, ou seja, 5 gêneros concentram o
+    # mesmo que os outros 14 juntos. A pizza compara médias por filme, não
+    # o total arrecadado por cada gênero.
 
 
 if __name__ == "__main__":
