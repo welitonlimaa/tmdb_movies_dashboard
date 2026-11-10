@@ -129,3 +129,11 @@ if __name__ == "__main__":
     base = carregar_base()
     imprimir_colunas(base)
     exibir(base)
+
+    # CONCLUSAO DA TAREFA 5 — AVALIACAO E POPULARIDADE
+# A análise demonstrou que os filmes com maior popularidade
+# apresentam nota média superior aos filmes menos populares.
+# A faixa de baixa popularidade apresentou média de 6,05,
+# enquanto a faixa de alta popularidade apresentou média de 6,66.
+# Isso indica uma tendência positiva entre popularidade e avaliação,
+# mas ser popular não garante uma avaliação elevada do público.

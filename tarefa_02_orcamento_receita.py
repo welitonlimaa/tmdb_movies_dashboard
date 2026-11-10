@@ -1,5 +1,7 @@
+import altair as alt
 import streamlit as st
 import pandas as pd
+
 
 from preparacao import carregar_base, filmes_com_dinheiro, imprimir_colunas
 
@@ -19,12 +21,13 @@ def exibir(base: pd.DataFrame) -> None:
     st.caption(f"{len(filmes)} filmes entram nesta comparação.")
 
     st.subheader("Dispersão: orçamento x receita")
-
-    st.scatter_chart(
-        filmes,
-        x="orcamento",
-        y="receita",
+    grafico = alt.Chart(filmes).mark_circle(size=60).encode(
+    x=alt.X("orcamento:Q", scale=alt.Scale(type="log"), title="Orçamento"),
+    y=alt.Y("receita:Q", scale=alt.Scale(type="log"), title="Receita"),
+    tooltip=["titulo", "orcamento", "receita"]
     )
+
+    st.altair_chart(grafico, use_container_width=True)
 
     # Explicacao:
     # O grafico de dispersao permite observar a relacao entre
@@ -62,3 +65,10 @@ if __name__ == "__main__":
     base = carregar_base()
     imprimir_colunas(base)
     exibir(base)
+
+    # CONCLUSAO DA TAREFA 5 — ORCAMENTO E RECEITA
+# A análise de 3.228 filmes com orçamento e receita informados
+# identificou uma correlação positiva de aproximadamente 0,705.
+# Isso indica que filmes com maiores orçamentos tendem a apresentar
+# maiores receitas. Entretanto, essa relação não significa que
+# investir mais necessariamente garante maior arrecadação.

@@ -144,3 +144,12 @@ if __name__ == "__main__":
     base = carregar_base()
     imprimir_colunas(base)
     exibir(base)
+
+    # CONCLUSAO DA TAREFA 5 — GENEROS CINEMATOGRAFICOS
+# A análise identificou que Animação, Aventura e Fantasia estão
+# entre os gêneros com maiores receitas médias.
+# Aventura, Animação e Ficção Científica também se destacam
+# em popularidade média.
+# Os resultados demonstram que alguns gêneros se destacam
+# nos dois indicadores, mas receita e popularidade representam
+# medidas diferentes de desempenho dos filmes.
