@@ -13,6 +13,36 @@ Integrantes:
 - Alexander Nascimento Santos
 - Richardson da Silva Freitas
 
+
+# Entrega Final
+
+Entregáveis da Segunda Etapa do Projeto Integrador (Grupo 6).
+
+## 1. Dashboard funcional
+
+O dashboard está publicado e abre no navegador:
+
+[https://tmdbmoviesdashboard.streamlit.app/](https://tmdbmoviesdashboard.streamlit.app/)
+
+O código da página é o arquivo [`app.py`](app.py). A tela em uso:
+
+![Dashboard funcional](imagem_do_dashboard.png)
+
+## 2. Base de dados utilizada
+
+A análise usa o CSV [`dados/tmdb_5000_movies.csv`](dados/tmdb_5000_movies.csv) (TMDB 5000 Movie Dataset, 4.803 filmes).
+
+## 3. Protótipo do dashboard
+
+![Protótipo do dashboard](prototipo.png)
+
+## 4. Documento com 3 conclusões
+
+As três conclusões da análise estão em [`conclusoes_analise_resultados.pdf`](conclusoes_analise_resultados.pdf).
+
+
+# Orientações Desenvolvimento
+
 ## O que o dashboard precisa responder
 
 O objetivo geral é analisar o desempenho dos filmes relacionando gênero, orçamento, receita, popularidade e avaliação do público.
