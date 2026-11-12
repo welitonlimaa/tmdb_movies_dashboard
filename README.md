@@ -164,10 +164,3 @@ git push
 Troque o nome do arquivo e a mensagem pelo que você fez de fato. `git status` mostra o que mudou. `git add` escolhe o arquivo. `git commit` grava um ponto na história. `git push` envia para o GitHub.
 
 Evite duas pessoas editarem o mesmo arquivo ao mesmo tempo. Cada objetivo já tem o seu arquivo para isso.
-
-## O que a etapa 2 pede além do código
-
-- Dashboard funcionando (este projeto, rodando com `streamlit run app.py`).
-- Base de dados (o CSV em `dados/`).
-- Protótipo desenhado antes da tela final (papel, PowerPoint ou Canva), com título, posição dos gráficos e o nome de cada visualização. Esse desenho não é um arquivo Python.
-- Três conclusões apoiadas nos gráficos, escritas como comentário no código, e o print da tela.

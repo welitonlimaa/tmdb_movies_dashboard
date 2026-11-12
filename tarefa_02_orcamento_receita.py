@@ -11,7 +11,7 @@ def exibir(base: pd.DataFrame) -> None:
 
     st.header("1. Orçamento e receita")
 
-    st.write(
+    st.caption(
         "Pergunta: filmes com maior orçamento geram maior receita? "
         "Os gráficos desta seção usam apenas filmes lançados com os dois valores informados."
     )
@@ -20,14 +20,22 @@ def exibir(base: pd.DataFrame) -> None:
 
     st.caption(f"{len(filmes)} filmes entram nesta comparação.")
 
-    st.subheader("Dispersão: orçamento x receita")
-    grafico = alt.Chart(filmes).mark_circle(size=60).encode(
-    x=alt.X("orcamento:Q", scale=alt.Scale(type="log"), title="Orçamento"),
-    y=alt.Y("receita:Q", scale=alt.Scale(type="log"), title="Receita"),
-    tooltip=["titulo", "orcamento", "receita"]
-    )
+    coluna_dispersao, coluna_barras = st.columns(2, gap="medium", wrap=False)
 
-    st.altair_chart(grafico, use_container_width=True)
+    with coluna_dispersao:
+        with st.container(border=True, key="card_dispersao_orcamento"):
+            st.subheader("Dispersão: orçamento x receita")
+            grafico = (
+                alt.Chart(filmes)
+                .mark_circle(size=60)
+                .encode(
+                    x=alt.X("orcamento:Q", scale=alt.Scale(type="log"), title="Orçamento"),
+                    y=alt.Y("receita:Q", scale=alt.Scale(type="log"), title="Receita"),
+                    tooltip=["titulo", "orcamento", "receita"],
+                )
+                .properties(height=320, width="container")
+            )
+            st.altair_chart(grafico, width="stretch")
 
     # Explicacao:
     # O grafico de dispersao permite observar a relacao entre
@@ -38,14 +46,50 @@ def exibir(base: pd.DataFrame) -> None:
     # arrecadaram proporcionalmente e filmes mais baratos com
     # grande sucesso comercial.
 
-    st.subheader("Barras: 10 maiores receitas")
+    with coluna_barras:
+        with st.container(border=True, key="card_barras_receita"):
+            st.subheader("Barras: 10 maiores receitas")
 
-    top = (
-        filmes.nlargest(10, "receita")
-        .set_index("titulo")[["orcamento", "receita"]]
-    )
-
-    st.bar_chart(top)
+            top = (
+                filmes.nlargest(10, "receita")
+                .set_index("titulo")[["orcamento", "receita"]]
+            )
+            # Mesmas barras, na horizontal, para o título caber no cartão.
+            longo = top.reset_index().melt(
+                id_vars="titulo",
+                var_name="serie",
+                value_name="valor",
+            )
+            grafico_barras = (
+                alt.Chart(longo)
+                .mark_bar()
+                .encode(
+                    y=alt.Y(
+                        "titulo:N",
+                        sort=list(top.index),
+                        title=None,
+                        axis=alt.Axis(
+                            labelLimit=180,
+                            labelFontSize=10,
+                            labelOverlap=False,
+                        ),
+                    ),
+                    x=alt.X("valor:Q", stack="zero", title=None),
+                    color=alt.Color(
+                        "serie:N",
+                        title=None,
+                        scale=alt.Scale(
+                            domain=["orcamento", "receita"],
+                            range=["#1d4ed8", "#7dd3fc"],
+                        ),
+                        legend=alt.Legend(orient="bottom"),
+                    ),
+                    order=alt.Order("serie:N", sort="ascending"),
+                    tooltip=["titulo", "serie", "valor"],
+                )
+                .properties(height=320, width="container")
+            )
+            st.altair_chart(grafico_barras, width="stretch")
 
     # Explicacao:
     # Entre os 10 filmes com maior receita, percebe-se que

@@ -1,0 +1,16 @@
+# Cores de cada tema. O Streamlit escolhe light ou dark sozinho,
+# conforme o sistema, e o menu do app continua podendo trocar.
+
+[theme.light]
+primaryColor = "#5b4dff"
+backgroundColor = "#eef1f6"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#1e2433"
+borderColor = "#e6e9f0"
+
+[theme.dark]
+primaryColor = "#8b7cff"
+backgroundColor = "#12141c"
+secondaryBackgroundColor = "#1c2030"
+textColor = "#e7e9f2"
+borderColor = "#2c3348"
