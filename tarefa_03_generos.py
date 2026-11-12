@@ -7,7 +7,7 @@ from preparacao import carregar_base, imprimir_colunas, resumo_por_genero
 
 def exibir(base: pd.DataFrame) -> None:
     """Mostra a secao desta tarefa no dashboard."""
-    st.header("2. Gêneros, popularidade e receita")
+    st.header("Gêneros, popularidade e receita")
     st.caption(
         "Pergunta: quais gêneros apresentam maior popularidade e receita? "
         "Os números são médias por filme lançado, para não contar duas vezes "

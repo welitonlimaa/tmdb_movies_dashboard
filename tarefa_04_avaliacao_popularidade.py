@@ -10,7 +10,7 @@ def exibir(base: pd.DataFrame) -> None:
     cor_linha = "#F59E0B"
     nomes_faixa = {"baixa": "Baixa", "media": "Média", "alta": "Alta"}
 
-    st.header("3. Avaliação e popularidade")
+    st.header("Avaliação e popularidade")
     st.caption(
         "Pergunta: filmes mais populares são necessariamente os mais bem "
         "avaliados? A nota média do público não é a mesma coisa que o índice "

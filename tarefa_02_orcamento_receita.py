@@ -9,7 +9,7 @@ from preparacao import carregar_base, filmes_com_dinheiro, imprimir_colunas
 def exibir(base: pd.DataFrame) -> None:
     """Mostra a secao desta tarefa no dashboard."""
 
-    st.header("1. Orçamento e receita")
+    st.header("Orçamento e receita")
 
     st.caption(
         "Pergunta: filmes com maior orçamento geram maior receita? "
